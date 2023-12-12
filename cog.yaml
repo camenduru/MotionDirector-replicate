@@ -1,0 +1,9 @@
+build:
+  gpu: false
+  python_version: "3.10"
+  run:
+    - apt update -y && apt install -y software-properties-common python3-launchpadlib && apt update -y && add-apt-repository -y ppa:git-core/ppa && apt update -y && apt install -y aria2 git git-lfs wget libgl1 libglib2.0-0
+    - wget https://ppa.launchpadcontent.net/flexiondotorg/nvtop/ubuntu/pool/main/n/nvtop/nvtop_3.0.0-0~jammy1.0_amd64.deb && apt install -y ./nvtop_3.0.0-0~jammy1.0_amd64.deb
+    - git clone -b cog https://github.com/camenduru/MotionDirector /content/MotionDirector && pip install -r /content/MotionDirector/requirements.txt && pip install xformers==0.0.20 notebook pyngrok
+    - git lfs install && git clone https://huggingface.co/vdo/MotionDirector /content/MotionDirector/models/MotionDirector
+predict: "predict.py:Predictor"
